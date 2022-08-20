@@ -11,13 +11,11 @@ const Content = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0px 24px;
-  gap: 10px;
+  gap: 8px;
   width: 320px;
-  height: 165px;
   background: #ffffff;
   box-shadow: 0px 1.2px 3.6px rgba(0, 0, 0, 0.1), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13);
   border-radius: 2px;
-  margin: 11px;
   padding: 24px;
   justify-content: space-between;
 `;

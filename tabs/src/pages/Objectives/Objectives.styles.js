@@ -8,6 +8,7 @@ const ObjectivesContainer = styled.div`
   display: flex;
   margin: 0;
   flex-wrap: wrap;
+  gap: 22px;
 `;
 
 export default { Content, ObjectivesContainer };

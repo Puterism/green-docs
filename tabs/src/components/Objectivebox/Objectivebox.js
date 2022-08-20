@@ -14,7 +14,6 @@ const Objectivebox = (props) => {
           <Styled.Title>{title}</Styled.Title>
           <Styled.Divider />
           <Styled.PersonaList>{PersonaList(people)}</Styled.PersonaList>
-
           <Styled.Date>{date}</Styled.Date>
           <Styled.ProgressBar>
             <Styled.ProgressText>{progress * 100}%</Styled.ProgressText>

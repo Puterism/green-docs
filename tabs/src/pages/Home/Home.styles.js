@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-const Home = styled.div``;
-
-const Title = styled.h1``;
+const PivotWrapper = styled.div`
+  padding: 0px 20px;
+`;
 
 const SidebarContent = styled.div`
   padding: 20px;
@@ -19,9 +19,8 @@ const FormField = styled.div`
 `;
 
 export default {
-  Home,
-  Title,
   SidebarContent,
   Form,
   FormField,
+  PivotWrapper,
 };

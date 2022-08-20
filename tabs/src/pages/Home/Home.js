@@ -6,6 +6,10 @@ import { people, mru } from '@fluentui/example-data';
 import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Styled from './Home.styles';
+import HeadTitle from '../../components/HeadTitle/HeadTitle';
+import { Pivot, PivotItem } from '@fluentui/react';
+
+import Overview from '../Overview/Overview';
 
 const suggestionProps = {
   suggestionsHeaderText: 'Suggested People',
@@ -113,14 +117,29 @@ const Home = () => {
           </Styled.Form>
         </Styled.SidebarContent>
       </Sidebar>
-      <Styled.Home>
-        <Styled.Title>홈</Styled.Title>
-        <ul>
-          <li>
-            <Link to="/goals">골</Link>
-          </li>
-        </ul>
-      </Styled.Home>
+
+      <div>
+        <HeadTitle name={'sonminji'} />
+        <Styled.PivotWrapper>
+          <Pivot aria-label="Basic Pivot Example">
+            <PivotItem headerText="Overview">
+              <Overview />
+            </PivotItem>
+
+            <PivotItem headerText="Objectives">
+              <Overview />
+            </PivotItem>
+
+            <PivotItem headerText="Tasks">
+              <Overview />
+            </PivotItem>
+
+            <PivotItem headerText="Sub Tasks">
+              <Overview />
+            </PivotItem>
+          </Pivot>
+        </Styled.PivotWrapper>
+      </div>
     </Layout>
   );
 };

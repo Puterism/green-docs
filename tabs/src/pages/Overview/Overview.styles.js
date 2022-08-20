@@ -1,16 +1,18 @@
 import styled from '@emotion/styled';
 
 const Content = styled.div`
-  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 `;
 
 const PersonasContainer = styled.div`
   display: flex;
+  gap: 32px;
+  overflow: scroll;
 `;
 
-const DetailsWrapper = styled.div`
-  margin-right: 32px;
-`;
+const DetailsWrapper = styled.div``;
 
 const Title = styled.h1`
   font-style: normal;
@@ -28,6 +30,7 @@ const Assignee = styled.p`
 const EntireTasks = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 22px;
 `;
 
 export default {

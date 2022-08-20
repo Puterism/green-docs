@@ -5,7 +5,7 @@ import Styled from './Home.styles';
 
 import HeadTitle from '../../components/HeadTitle/HeadTitle';
 import { Pivot, PivotItem } from '@fluentui/react';
-import Overview from '../Overview/Overview';
+
 import usePeoplePicker from '../../hooks/usePeoplePicker';
 import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
@@ -13,6 +13,10 @@ import { getTextFromItem, validateInput, onInputChange } from '../../utils/peopl
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import EmptyScreen from '../../components/EmptyScreen/EmptyScreen';
+import Overview from '../Overview/Overview';
+import Objectives from '../Objectives/Objectives';
+import Tasks from '../Tasks/Tasks';
+import SubTasks from '../SubTasks/SubTasks';
 
 const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
@@ -120,7 +124,6 @@ const Home = () => {
             <Link to="/detail/1">Detail</Link>
           </Styled.PivotWrapper>
         </Styled.Home>
-      )}
     </Layout>
   );
 };

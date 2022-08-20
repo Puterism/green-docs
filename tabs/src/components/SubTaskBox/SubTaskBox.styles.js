@@ -9,6 +9,16 @@ const CenterLine = (props) => {
     : null;
 };
 
+const Checkbox = (props) => {
+  css`
+    pointer-events: none;
+  `;
+};
+
+const CheckboxWrapper = styled.div`
+  ${Checkbox}
+`;
+
 const PersonaWrapper = styled.div`
   margin-right: 4px;
 `;
@@ -44,8 +54,6 @@ const Tasktitle = styled.p`
 
 const PersonaList = styled.div`
   display: flex;
-  margin-top: 7px;
-  margin-bottom: 7px;
 `;
 
 const NumberBox = styled.div`
@@ -92,6 +100,11 @@ const Duedate = styled.p`
   ${CenterLine};
 `;
 
+const Assignee = styled.div`
+  margin-top: 7px;
+  margin-bottom: 7px;
+`;
+
 export default {
   PersonaWrapper,
   TaskContainer,
@@ -103,4 +116,6 @@ export default {
   SubTask,
   Score,
   Duedate,
+  Assignee,
+  CheckboxWrapper,
 };

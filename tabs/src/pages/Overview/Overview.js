@@ -5,7 +5,7 @@ import { Persona, PersonaSize, PersonaPresence } from '@fluentui/react/lib/Perso
 import { people } from '@fluentui/example-data';
 import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
 
-const TestTaskData = [
+export const TestTaskData = [
   {
     id: 1,
     duedate: '10/7',
@@ -51,9 +51,7 @@ const Overview = () => {
   const [EntireTasks, setEntireTasks] = useState(TestTaskData);
   const [peopleList] = useState(people);
 
-  useEffect(() => {
-    console.log(people);
-  }, []);
+  useEffect(() => {}, []);
 
   function toggleTask(task, index) {
     setEntireTasks((prevTasks) => {

@@ -110,15 +110,15 @@ const Home = () => {
               </PivotItem>
 
               <PivotItem headerText="Objectives">
-                <Overview />
+                <Objectives />
               </PivotItem>
 
               <PivotItem headerText="Tasks">
-                <Overview />
+                <Tasks />
               </PivotItem>
 
-              <PivotItem headerText="Sub Tasks">
-                <Overview />
+              <PivotItem headerText="SubTasks">
+                <SubTasks />
               </PivotItem>
             </Pivot>
             <Link to="/detail/1">Detail</Link>

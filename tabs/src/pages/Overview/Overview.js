@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Styled from './Overview.styles';
-import { Persona, PersonaSize, PersonaPresence } from '@fluentui/react/lib/Persona';
+import { Persona, PersonaSize } from '@fluentui/react/lib/Persona';
 import { people } from '@fluentui/example-data';
 import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
 
@@ -41,7 +41,7 @@ const PersonaDetails = (item, index) => {
         text={item.imageInitials}
         secondaryText={item.secondaryText}
         size={PersonaSize.size48}
-        presence={PersonaPresence.online}
+        presence={item.presence}
       />
     </Styled.DetailsWrapper>
   );

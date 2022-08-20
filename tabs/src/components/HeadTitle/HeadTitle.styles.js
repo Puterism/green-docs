@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 
 const Content = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   padding: 20px 32px;
 `;
 
@@ -22,8 +26,11 @@ const Subtitle = styled.h1`
   color: #605e5c;
 `;
 
+const CSVBtn = styled.div``;
+
 export default {
   Content,
   Maintitle,
   Subtitle,
+  CSVBtn,
 };

@@ -3,7 +3,6 @@ import Styled from './SubTaskBox.styles';
 import { Checkbox, TooltipHost } from '@fluentui/react';
 import { people } from '@fluentui/example-data';
 import { Persona, PersonaPresence } from '@fluentui/react/lib/Persona';
-import { TestImages } from '@fluentui/example-data';
 import { useId } from '@fluentui/react-hooks';
 
 export const PersonaList = (people) => {
@@ -16,9 +15,12 @@ export const PersonaList = (people) => {
           index < 5 && (
             <Styled.PersonaWrapper key={index}>
               <Persona
-                imageUrl={TestImages.personaFemale}
+                imageUrl={item.imageUrl}
+                showSecondaryText={true}
+                text={item.imageInitials}
+                secondaryText={item.secondaryText}
                 coinSize={16}
-                presence={PersonaPresence.online}
+                presence={item.presence}
                 hidePersonaDetails
               />
             </Styled.PersonaWrapper>

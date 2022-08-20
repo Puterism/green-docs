@@ -23,6 +23,8 @@ import EmptyScreen from '../../components/EmptyScreen/EmptyScreen';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const [username, setUsername] = useState('');
+
   const [loading] = useState(false);
   const [objectiveName, onChangeObjectiveName] = useInput('');
   const [dueDate, onSelectDueDate] = useDatePicker('');
@@ -97,6 +99,9 @@ const Home = () => {
     await initTeamsFx();
     await initGraphToolkit(teamsfx.current, scope.current);
     await checkIsConsentNeeded();
+
+    const me = await Providers.globalProvider.graph.client.api('me').get();
+    setUsername(me.displayName);
   }, [checkIsConsentNeeded, initGraphToolkit, initTeamsFx]);
 
   useEffect(() => {
@@ -161,7 +166,7 @@ const Home = () => {
             ></EmptyScreen>
           ) : (
             <Styled.Home>
-              <HeadTitle name={'sonminji'} />
+              <HeadTitle name={username} />
               <Styled.PivotWrapper>
                 <Pivot aria-label="Basic Pivot Example">
                   <PivotItem headerText="Overview">

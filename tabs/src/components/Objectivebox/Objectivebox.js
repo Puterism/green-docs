@@ -8,7 +8,7 @@ const Objectivebox = (props) => {
   const { title, date, progress, id } = props.task;
 
   return (
-    <Link to={`/detail/:${id}`}>
+    <Link to={`/detail/:${id}`} style={{ textDecoration: 'none' }}>
       <Styled.Content key={id}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Divider />

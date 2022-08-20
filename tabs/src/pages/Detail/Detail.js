@@ -10,7 +10,7 @@ import {
   Text,
   TextField,
 } from '@fluentui/react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -20,6 +20,35 @@ import usePeoplePicker from '../../hooks/usePeoplePicker';
 import { getTextFromItem, onInputChange, validateInput } from '../../utils/peoplePicker';
 import Styled from './Detail.styles';
 import { facepilePersonas } from '@fluentui/example-data';
+import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
+import { people } from '@fluentui/example-data';
+
+const TestTaskData = [
+  {
+    id: 1,
+    duedate: '10/7',
+    title: 'Front Developer',
+    description: '설명입니다',
+    Assignee: people,
+    Score: 5,
+    isDone: false,
+  },
+  { id: 2, duedate: '10/2', title: 'Front Developer', Assignee: people, Score: 6, isDone: false },
+  { id: 3, duedate: '10/3', title: 'Front Developer', Assignee: people, Score: 8, isDone: false },
+  { id: 4, duedate: '10/4', title: 'Front Developer', Assignee: people, Score: 2, isDone: false },
+  {
+    id: 5,
+    duedate: '10/5',
+    title: 'Front Developer',
+    description:
+      'I did some research and found that the proper way of implementing a user login system is to store the user name/id and the encrypted/hashed',
+    Assignee: people,
+    Score: 1,
+    isDone: false,
+  },
+  { id: 6, duedate: '10/6', title: 'Front Developer', Assignee: people, Score: 3, isDone: false },
+  { id: 7, duedate: '10/7', title: 'Front Developer', Assignee: people, Score: 4, isDone: false },
+];
 
 const breadcrumbItems = [
   { text: 'Objectives', key: 'objectives-title' },
@@ -41,6 +70,21 @@ const Detail = () => {
   const [dueDate, onSelectDueDate] = useDatePicker('');
   const [description, onChangeDescription] = useInput('');
   const [score, onChangeScore] = useInput('');
+
+  const [EntireTasks, setEntireTasks] = useState(TestTaskData);
+  const [peopleList] = useState(people);
+
+  useEffect(() => {
+    console.log(people);
+  }, []);
+
+  function toggleTask(task, index) {
+    setEntireTasks((prevTasks) => {
+      const nextTasks = [...prevTasks];
+      nextTasks[index] = { ...task, isDone: !task.isDone };
+      return nextTasks;
+    });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -141,6 +185,9 @@ const Detail = () => {
             strategy.
           </Text>
         </Styled.DescriptionWrapper>
+        <Styled.DueDateWrapper>
+          <Text variant={'large'}>Until 2022/09/01</Text>
+        </Styled.DueDateWrapper>
         <Styled.FacepileWrapper>
           <Facepile personaSize={PersonaSize.size32} personas={personas} />
         </Styled.FacepileWrapper>
@@ -148,6 +195,14 @@ const Detail = () => {
           <ProgressIndicator percentComplete={0.5} />
         </Styled.ProgressIndicator>
 
+        <Styled.TaskCardListWrapper>
+          <Text variant="large">Tasks</Text>
+          <Styled.TaskCardList>
+            {TestTaskData.map((task, index) => (
+              <SubTaskBox key={task.id} task={task} onClick={() => toggleTask(task, index)} />
+            ))}
+          </Styled.TaskCardList>
+        </Styled.TaskCardListWrapper>
         <h2>ID: {id}</h2>
         <ul>
           <li>

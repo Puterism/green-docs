@@ -37,6 +37,32 @@ const ProgressIndicator = styled.div`
   padding: 16px 8px;
 `;
 
+const DueDateWrapper = styled.div`
+  padding: 0 8px;
+  margin-bottom: 24px;
+
+  & span {
+    font-weight: 600;
+  }
+`;
+
+const TaskCardListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+
+  & span {
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+`;
+
+const TaskCardList = styled.div`
+  display: flex;
+  max-width: 100vw;
+  flex-wrap: wrap;
+`;
+
 export default {
   Detail,
   SidebarContent,
@@ -46,4 +72,7 @@ export default {
   DescriptionWrapper,
   FacepileWrapper,
   ProgressIndicator,
+  DueDateWrapper,
+  TaskCardListWrapper,
+  TaskCardList,
 };

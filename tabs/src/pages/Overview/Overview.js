@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import Styled from './Overview.styles';
 import { TestImages } from '@fluentui/example-data';
 import { Persona, PersonaSize, PersonaPresence } from '@fluentui/react/lib/Persona';
-import { Checkbox } from '@fluentui/react';
 import { people } from '@fluentui/example-data';
+import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
 
 const TestData = {
   1: { name: 'Minji', role: 'Front Developer' },
@@ -14,18 +14,20 @@ const TestData = {
   5: { name: 'Gabin', role: 'Entrepreneur' },
 };
 
-const TestTaskData = {
-  duedate: 'Minji',
-  title: 'Front Developer',
-  Assignee: people,
-  Score: 5,
-  isDone: true,
-};
+const TestTaskData = [
+  { id: 1, duedate: '10/7', title: 'Front Developer', Assignee: people, Score: 5, isDone: false },
+  { id: 2, duedate: '10/2', title: 'Front Developer', Assignee: people, Score: 6, isDone: false },
+  { id: 3, duedate: '10/3', title: 'Front Developer', Assignee: people, Score: 8, isDone: false },
+  { id: 4, duedate: '10/4', title: 'Front Developer', Assignee: people, Score: 2, isDone: false },
+  { id: 5, duedate: '10/5', title: 'Front Developer', Assignee: people, Score: 1, isDone: false },
+  { id: 6, duedate: '10/6', title: 'Front Developer', Assignee: people, Score: 3, isDone: false },
+  { id: 7, duedate: '10/7', title: 'Front Developer', Assignee: people, Score: 4, isDone: false },
+];
 
-const PersonaDetails = (item) => {
+const PersonaDetails = (item, index) => {
   const { name, role } = item;
   return (
-    <Styled.DetailsWrapper>
+    <Styled.DetailsWrapper key={index}>
       <Persona
         imageUrl={TestImages.personaFemale}
         showSecondaryText={true}
@@ -38,68 +40,30 @@ const PersonaDetails = (item) => {
   );
 };
 
-const PersonaList = () => {
-  const peopleLen = Object.values(people).length;
-  let extraNum = peopleLen > 5 ? peopleLen - 5 : 0;
-  return (
-    <Styled.PersonaList>
-      {Object.values(people).map(
-        (item, index) =>
-          index < 5 && (
-            <Styled.PersonaWrapper>
-              <Persona
-                imageUrl={TestImages.personaFemale}
-                coinSize={16}
-                presence={PersonaPresence.online}
-                hidePersonaDetails
-              />
-            </Styled.PersonaWrapper>
-          )
-      )}
-
-      {extraNum > 0 && (
-        <Styled.NumberBox>
-          <Styled.ExtraNumber>+{extraNum}</Styled.ExtraNumber>
-        </Styled.NumberBox>
-      )}
-    </Styled.PersonaList>
-  );
-};
-
-const TaskBoxs = (Tasks, setTasks) => {
-  return (
-    <div onClick={() => setTasks((prev) => ({ ...prev, isDone: !Tasks.isDone }))}>
-      <Styled.SubTask>
-        <Styled.TaskContainer>
-          <Styled.TaskInfoBox>
-            <Styled.Duedate isDone={Tasks.isDone}>Until {Tasks.duedate}</Styled.Duedate>
-            <Styled.Tasktitle isDone={Tasks.isDone}>{Tasks.title}</Styled.Tasktitle>
-            {PersonaList()}
-            <Styled.Score isDone={Tasks.isDone}>Score : {Tasks.Score}</Styled.Score>
-          </Styled.TaskInfoBox>
-          <Checkbox checked={Tasks.isDone} />
-        </Styled.TaskContainer>
-      </Styled.SubTask>
-    </div>
-  );
-};
-
 const Overview = () => {
-  const [Tasks, setTasks] = useState(TestTaskData);
+  const [EntireTasks, setEntireTasks] = useState(TestTaskData);
 
-  useEffect(() => {
-    console.log(people);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <Styled.Content>
       <Styled.Title>Team</Styled.Title>
       <Styled.PersonasContainer>
-        {Object.values(TestData).map((item) => PersonaDetails(item))}
+        {Object.values(TestData).map((item, index) => PersonaDetails(item, index))}
       </Styled.PersonasContainer>
 
       <Styled.Title>Sub Task this week</Styled.Title>
-      {TaskBoxs(Tasks, setTasks)}
+      <Styled.EntireTasks>
+        {EntireTasks.map((task, index) =>
+          SubTaskBox(task, () => {
+            setEntireTasks((prevTasks) => {
+              const nextTasks = [...prevTasks];
+              nextTasks[index] = { ...task, isDone: !task.isDone };
+              return nextTasks;
+            });
+          })
+        )}
+      </Styled.EntireTasks>
     </Styled.Content>
   );
 };

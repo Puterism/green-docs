@@ -51,9 +51,7 @@ const Overview = () => {
   const [EntireTasks, setEntireTasks] = useState(TestTaskData);
   const [peopleList] = useState(people);
 
-  useEffect(() => {
-    console.log(people);
-  }, []);
+  useEffect(() => {}, []);
 
   function toggleTask(task, index) {
     setEntireTasks((prevTasks) => {

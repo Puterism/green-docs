@@ -9,6 +9,16 @@ const CenterLine = (props) => {
     : null;
 };
 
+const Checkbox = (props) => {
+  css`
+    pointer-events: none;
+  `;
+};
+
+const CheckboxWrapper = styled.div`
+  ${Checkbox}
+`;
+
 const PersonaWrapper = styled.div`
   margin-right: 4px;
 `;
@@ -107,4 +117,5 @@ export default {
   Score,
   Duedate,
   Assignee,
+  CheckboxWrapper,
 };

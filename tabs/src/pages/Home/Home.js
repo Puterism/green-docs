@@ -10,6 +10,7 @@ import usePeoplePicker from '../../hooks/usePeoplePicker';
 import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
 import { getTextFromItem, validateInput, onInputChange } from '../../utils/peoplePicker';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
@@ -88,12 +89,14 @@ const Home = () => {
         </Styled.SidebarContent>
       </Sidebar>
 
-      <div>
+      <Styled.Home>
         <HeadTitle name={'sonminji'} />
         <Styled.PivotWrapper>
           <Pivot aria-label="Basic Pivot Example">
             <PivotItem headerText="Overview">
-              <Overview />
+              <Link to="/detail/1">
+                <Overview />
+              </Link>
             </PivotItem>
 
             <PivotItem headerText="Objectives">
@@ -109,7 +112,7 @@ const Home = () => {
             </PivotItem>
           </Pivot>
         </Styled.PivotWrapper>
-      </div>
+      </Styled.Home>
     </Layout>
   );
 };

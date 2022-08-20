@@ -4,15 +4,16 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding: 0 8px;
 `;
 
 const PersonasContainer = styled.div`
   display: flex;
-  gap: 32px;
-  overflow: scroll;
 `;
 
-const DetailsWrapper = styled.div``;
+const DetailsWrapper = styled.div`
+  margin-right: 32px;
+`;
 
 const Title = styled.h1`
   font-style: normal;

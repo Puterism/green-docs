@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     <Styled.Layout>
       <Global styles={globalStyle} />
       <Nav />
-      {children}
+      <Styled.Content>{children}</Styled.Content>
     </Styled.Layout>
   );
 };

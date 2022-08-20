@@ -8,6 +8,9 @@ import HeadTitle from '../../components/HeadTitle/HeadTitle';
 import { Pivot, PivotItem } from '@fluentui/react';
 
 import Overview from '../Overview/Overview';
+import Objectives from '../Objectives/Objectives';
+import SubTasks from '../SubTasks/SubTasks';
+import Tasks from '../Tasks/Tasks';
 import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
 import { PeoplePicker } from '@microsoft/mgt-react';
@@ -166,15 +169,15 @@ const Home = () => {
                   </PivotItem>
 
                   <PivotItem headerText="Objectives">
-                    <Overview />
+                    <Objectives />
                   </PivotItem>
 
                   <PivotItem headerText="Tasks">
-                    <Overview />
+                    <Tasks />
                   </PivotItem>
 
                   <PivotItem headerText="Sub Tasks">
-                    <Overview />
+                    <SubTasks />
                   </PivotItem>
                 </Pivot>
                 <Link to="/detail/1">Detail</Link>

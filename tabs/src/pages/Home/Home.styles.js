@@ -18,10 +18,16 @@ const FormField = styled.div`
   }
 `;
 
+const SubmitField = styled.div`
+  margin-top: 70px;
+  text-align: right;
+`;
+
 export default {
   Home,
   Title,
   SidebarContent,
   Form,
   FormField,
+  SubmitField,
 };

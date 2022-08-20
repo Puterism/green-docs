@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DatePicker, Text, TextField } from '@fluentui/react';
+import { DatePicker, Text, TextField, PrimaryButton } from '@fluentui/react';
 import { NormalPeoplePicker } from '@fluentui/react/lib/Pickers';
 import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -62,6 +62,9 @@ const Home = () => {
                 resolveDelay={300}
               />
             </Styled.FormField>
+            <Styled.SubmitField>
+              <PrimaryButton text="Create" />
+            </Styled.SubmitField>
           </Styled.Form>
         </Styled.SidebarContent>
       </Sidebar>

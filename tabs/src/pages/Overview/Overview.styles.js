@@ -9,6 +9,8 @@ const Content = styled.div`
 
 const PersonasContainer = styled.div`
   display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
 `;
 
 const DetailsWrapper = styled.div`

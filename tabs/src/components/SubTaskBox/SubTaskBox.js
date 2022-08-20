@@ -6,7 +6,7 @@ import { Persona, PersonaPresence } from '@fluentui/react/lib/Persona';
 import { TestImages } from '@fluentui/example-data';
 import { useId } from '@fluentui/react-hooks';
 
-const PersonaList = (people) => {
+export const PersonaList = (people) => {
   const peopleLen = Object.values(people).length;
   let extraNum = peopleLen > 5 ? peopleLen - 5 : 0;
   return (

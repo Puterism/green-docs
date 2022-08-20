@@ -50,6 +50,7 @@ const Tasktitle = styled.p`
   font-size: 14px;
   line-height: 22px;
   ${CenterLine};
+  margin-bottom: 6px;
 `;
 
 const PersonaList = styled.div`
@@ -88,6 +89,7 @@ const Score = styled.p`
   line-height: 20px;
   color: #019e79;
   ${CenterLine};
+  margin-top: 6px;
 `;
 
 const Duedate = styled.p`

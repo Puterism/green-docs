@@ -1,15 +1,9 @@
 import styled from '@emotion/styled';
 
-
-const PivotWrapper = styled.div`
-  padding: 0px 20px;
-`;
-
-const Home = styled.div`
+const Detail = styled.div`
+  padding: 8px 24px;
   flex: 1;
 `;
-
-const Title = styled.h1``;
 
 const SidebarContent = styled.div`
   padding: 20px;
@@ -30,10 +24,26 @@ const SubmitField = styled.div`
   text-align: right;
 `;
 
+const DescriptionWrapper = styled.div`
+  padding: 8px;
+  margin-bottom: 24px;
+`;
+
+const FacepileWrapper = styled.div`
+  padding: 0 8px;
+`;
+
+const ProgressIndicator = styled.div`
+  padding: 16px 8px;
+`;
+
 export default {
+  Detail,
   SidebarContent,
   Form,
   FormField,
-  PivotWrapper,
   SubmitField,
+  DescriptionWrapper,
+  FacepileWrapper,
+  ProgressIndicator,
 };

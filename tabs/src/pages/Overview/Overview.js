@@ -15,7 +15,11 @@ const TestData = {
 };
 
 const TestTaskData = {
-  1: { duedate: 'Minji', title: 'Front Developer', Assignee: ['minji'], Score: 5, isDone: true },
+  duedate: 'Minji',
+  title: 'Front Developer',
+  Assignee: people,
+  Score: 5,
+  isDone: true,
 };
 
 const PersonaDetails = (item) => {
@@ -34,18 +38,49 @@ const PersonaDetails = (item) => {
   );
 };
 
-const TaskBox = () => {
+const PersonaList = () => {
+  const peopleLen = Object.values(people).length;
+  let extraNum = peopleLen > 5 ? peopleLen - 5 : 0;
   return (
-    <Styled.TaskContainer>
-      <Styled.TaskInfoBox>
-        <Styled.Duedate>Until 10/7</Styled.Duedate>
-        <Styled.Tasktitle>Tasktitle</Styled.Tasktitle>
-        <Styled.Assignee>Assignee</Styled.Assignee>
-        <Styled.Score>Score</Styled.Score>
-      </Styled.TaskInfoBox>
+    <Styled.PersonaList>
+      {Object.values(people).map(
+        (item, index) =>
+          index < 5 && (
+            <Styled.PersonaWrapper>
+              <Persona
+                imageUrl={TestImages.personaFemale}
+                coinSize={16}
+                presence={PersonaPresence.online}
+                hidePersonaDetails
+              />
+            </Styled.PersonaWrapper>
+          )
+      )}
 
-      <Checkbox onChange={() => console.log('checked')} />
-    </Styled.TaskContainer>
+      {extraNum > 0 && (
+        <Styled.NumberBox>
+          <Styled.ExtraNumber>+{extraNum}</Styled.ExtraNumber>
+        </Styled.NumberBox>
+      )}
+    </Styled.PersonaList>
+  );
+};
+
+const TaskBoxs = (Tasks, setTasks) => {
+  return (
+    <div onClick={() => setTasks((prev) => ({ ...prev, isDone: !Tasks.isDone }))}>
+      <Styled.SubTask>
+        <Styled.TaskContainer>
+          <Styled.TaskInfoBox>
+            <Styled.Duedate isDone={Tasks.isDone}>Until {Tasks.duedate}</Styled.Duedate>
+            <Styled.Tasktitle isDone={Tasks.isDone}>{Tasks.title}</Styled.Tasktitle>
+            {PersonaList()}
+            <Styled.Score isDone={Tasks.isDone}>Score : {Tasks.Score}</Styled.Score>
+          </Styled.TaskInfoBox>
+          <Checkbox checked={Tasks.isDone} />
+        </Styled.TaskContainer>
+      </Styled.SubTask>
+    </div>
   );
 };
 
@@ -53,19 +88,18 @@ const Overview = () => {
   const [Tasks, setTasks] = useState(TestTaskData);
 
   useEffect(() => {
-    //Get Task Data
     console.log(people);
   }, []);
 
   return (
     <Styled.Content>
       <Styled.Title>Team</Styled.Title>
-      <Styled.PersonaWrapper>
+      <Styled.PersonasContainer>
         {Object.values(TestData).map((item) => PersonaDetails(item))}
-      </Styled.PersonaWrapper>
+      </Styled.PersonasContainer>
 
       <Styled.Title>Sub Task this week</Styled.Title>
-      {TaskBox()}
+      {TaskBoxs(Tasks, setTasks)}
     </Styled.Content>
   );
 };

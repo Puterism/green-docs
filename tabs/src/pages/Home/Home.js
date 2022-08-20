@@ -3,10 +3,25 @@ import { DatePicker, Text, TextField, PrimaryButton, NormalPeoplePicker } from '
 import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Styled from './Home.styles';
+
+import HeadTitle from '../../components/HeadTitle/HeadTitle';
+import { Pivot, PivotItem } from '@fluentui/react';
+import Overview from '../Overview/Overview';
 import usePeoplePicker from '../../hooks/usePeoplePicker';
 import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
 import { getTextFromItem, validateInput, onInputChange } from '../../utils/peoplePicker';
+
+const suggestionProps = {
+  suggestionsHeaderText: 'Suggested People',
+  mostRecentlyUsedHeaderText: 'Suggested Contacts',
+  noResultsFoundText: 'No results found',
+  loadingText: 'Loading',
+  showRemoveButtons: true,
+  suggestionsAvailableAlertText: 'People Picker Suggestions available',
+  suggestionsContainerAriaLabel: 'Suggested contacts',
+};
+
 
 const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
@@ -84,14 +99,30 @@ const Home = () => {
           </Styled.Form>
         </Styled.SidebarContent>
       </Sidebar>
-      <Styled.Home>
-        <Styled.Title>홈</Styled.Title>
-        <ul>
-          <li>
-            <Link to="/detail/1">골</Link>
-          </li>
-        </ul>
-      </Styled.Home>
+
+      <div>
+        <HeadTitle name={'sonminji'} />
+        <Styled.PivotWrapper>
+          <Pivot aria-label="Basic Pivot Example">
+            <PivotItem headerText="Overview">
+              <Overview />
+            </PivotItem>
+
+            <PivotItem headerText="Objectives">
+              <Overview />
+            </PivotItem>
+
+            <PivotItem headerText="Tasks">
+              <Overview />
+            </PivotItem>
+
+            <PivotItem headerText="Sub Tasks">
+              <Overview />
+            </PivotItem>
+          </Pivot>
+        </Styled.PivotWrapper>
+      </div>
+
     </Layout>
   );
 };

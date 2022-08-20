@@ -9,6 +9,7 @@ const App = () => {
         <Route exact path="/">
           <Redirect to="/tab" />
         </Route>
+
         <>
           <Route exact path="/tab" component={Home} />
           <Route exact path="/detail/:id" component={Detail} />

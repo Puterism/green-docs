@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
 
+
+const PivotWrapper = styled.div`
+  padding: 0px 20px;
+`;
+
 const Home = styled.div`
   flex: 1;
 `;
@@ -26,10 +31,9 @@ const SubmitField = styled.div`
 `;
 
 export default {
-  Home,
-  Title,
   SidebarContent,
   Form,
   FormField,
+  PivotWrapper,
   SubmitField,
 };

@@ -1,74 +1,26 @@
-import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DatePicker, Text, TextField } from '@fluentui/react';
-import { NormalPeoplePicker, ValidationState } from '@fluentui/react/lib/Pickers';
-import { people, mru } from '@fluentui/example-data';
+import { DatePicker, Text, TextField, PrimaryButton, NormalPeoplePicker } from '@fluentui/react';
 import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Styled from './Home.styles';
-
-const suggestionProps = {
-  suggestionsHeaderText: 'Suggested People',
-  mostRecentlyUsedHeaderText: 'Suggested Contacts',
-  noResultsFoundText: 'No results found',
-  loadingText: 'Loading',
-  showRemoveButtons: true,
-  suggestionsAvailableAlertText: 'People Picker Suggestions available',
-  suggestionsContainerAriaLabel: 'Suggested contacts',
-};
+import usePeoplePicker from '../../hooks/usePeoplePicker';
+import useInput from '../../hooks/useInput';
+import useDatePicker from '../../hooks/useDatePicker';
+import { getTextFromItem, validateInput, onInputChange } from '../../utils/peoplePicker';
 
 const Home = () => {
-  const [mostRecentlyUsed, setMostRecentlyUsed] = useState(mru);
-  const [peopleList, setPeopleList] = useState(people);
+  const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
+    usePeoplePicker();
 
-  const picker = useRef(null);
+  const [objectiveName, onChangeObjectiveName] = useInput('');
+  const [dueDate, onSelectDueDate] = useDatePicker('');
+  const [description, onChangeDescription] = useInput('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
   };
 
-  const filterPersonasByText = (filterText) => {
-    return peopleList.filter((item) => doesTextStartWith(item.text, filterText));
-  };
-
-  const filterPromise = (personasToReturn) => {
-    return personasToReturn;
-  };
-
-  const returnMostRecentlyUsed = (currentPersonas) => {
-    return filterPromise(removeDuplicates(mostRecentlyUsed, currentPersonas));
-  };
-
-  const onRemoveSuggestion = (item) => {
-    const indexPeopleList = peopleList.indexOf(item);
-    const indexMostRecentlyUsed = mostRecentlyUsed.indexOf(item);
-
-    if (indexPeopleList >= 0) {
-      const newPeople = peopleList
-        .slice(0, indexPeopleList)
-        .concat(peopleList.slice(indexPeopleList + 1));
-      setPeopleList(newPeople);
-    }
-
-    if (indexMostRecentlyUsed >= 0) {
-      const newSuggestedPeople = mostRecentlyUsed
-        .slice(0, indexMostRecentlyUsed)
-        .concat(mostRecentlyUsed.slice(indexMostRecentlyUsed + 1));
-      setMostRecentlyUsed(newSuggestedPeople);
-    }
-  };
-
-  const onFilterChanged = (filterText, currentPersonas, limitResults) => {
-    if (filterText) {
-      let filteredPersonas = filterPersonasByText(filterText);
-
-      filteredPersonas = removeDuplicates(filteredPersonas, currentPersonas);
-      filteredPersonas = limitResults ? filteredPersonas.slice(0, limitResults) : filteredPersonas;
-      return filterPromise(filteredPersonas);
-    } else {
-      return [];
-    }
-  };
+  const isValidForm = objectiveName !== '';
 
   return (
     <Layout>
@@ -77,17 +29,24 @@ const Home = () => {
           <Text variant="large">New Objective</Text>
           <Styled.Form onSubmit={handleSubmit}>
             <Styled.FormField>
-              <TextField label="Objective name" required />
+              <TextField
+                label="Objective name"
+                required
+                value={objectiveName}
+                onChange={onChangeObjectiveName}
+              />
             </Styled.FormField>
             <Styled.FormField>
               <DatePicker
                 label="Due Date"
                 placeholder="Select a date..."
                 ariaLabel="Select a date"
+                value={dueDate}
+                onSelectDate={onSelectDueDate}
               />
             </Styled.FormField>
             <Styled.FormField>
-              <TextField label="Description" />
+              <TextField label="Description" value={description} onChange={onChangeDescription} />
             </Styled.FormField>
             <Styled.FormField>
               <Text as="label" style={{ display: 'block', fontWeight: '600', padding: '5px 0px' }}>
@@ -97,9 +56,18 @@ const Home = () => {
                 onResolveSuggestions={onFilterChanged}
                 onEmptyInputFocus={returnMostRecentlyUsed}
                 getTextFromItem={getTextFromItem}
-                pickerSuggestionsProps={suggestionProps}
+                pickerSuggestionsProps={{
+                  suggestionsHeaderText: 'Suggested People',
+                  mostRecentlyUsedHeaderText: 'Suggested Contacts',
+                  noResultsFoundText: 'No results found',
+                  loadingText: 'Loading',
+                  showRemoveButtons: true,
+                  suggestionsAvailableAlertText: 'People Picker Suggestions available',
+                  suggestionsContainerAriaLabel: 'Suggested contacts',
+                }}
                 onRemoveSuggestion={onRemoveSuggestion}
                 onValidateInput={validateInput}
+                onItemChange={onItemChange}
                 removeButtonAriaLabel={'Remove'}
                 inputProps={{
                   onBlur: (event) => console.log('onBlur called'),
@@ -110,6 +78,9 @@ const Home = () => {
                 resolveDelay={300}
               />
             </Styled.FormField>
+            <Styled.SubmitField>
+              <PrimaryButton text="Create" disabled={!isValidForm} />
+            </Styled.SubmitField>
           </Styled.Form>
         </Styled.SidebarContent>
       </Sidebar>
@@ -126,43 +97,3 @@ const Home = () => {
 };
 
 export default Home;
-
-function doesTextStartWith(text, filterText) {
-  return text.toLowerCase().indexOf(filterText.toLowerCase()) === 0;
-}
-
-function removeDuplicates(personas, possibleDupes) {
-  return personas.filter((persona) => !listContainsPersona(persona, possibleDupes));
-}
-
-function listContainsPersona(persona, personas) {
-  if (!personas || !personas.length || personas.length === 0) {
-    return false;
-  }
-  return personas.filter((item) => item.text === persona.text).length > 0;
-}
-
-function getTextFromItem(persona) {
-  return persona.text;
-}
-
-function validateInput(input) {
-  if (input.indexOf('@') !== -1) {
-    return ValidationState.valid;
-  } else if (input.length > 1) {
-    return ValidationState.warning;
-  } else {
-    return ValidationState.invalid;
-  }
-}
-
-function onInputChange(input) {
-  const outlookRegEx = /<.*>/g;
-  const emailAddress = outlookRegEx.exec(input);
-
-  if (emailAddress && emailAddress[0]) {
-    return emailAddress[0].substring(1, emailAddress[0].length - 1);
-  }
-
-  return input;
-}

@@ -38,6 +38,14 @@ const Overview = () => {
     console.log(people);
   }, []);
 
+  function toggleTask(task, index) {
+    setEntireTasks((prevTasks) => {
+      const nextTasks = [...prevTasks];
+      nextTasks[index] = { ...task, isDone: !task.isDone };
+      return nextTasks;
+    });
+  }
+
   return (
     <Styled.Content>
       <Styled.Title>Team</Styled.Title>
@@ -47,15 +55,9 @@ const Overview = () => {
 
       <Styled.Title>Sub Task this week</Styled.Title>
       <Styled.EntireTasks>
-        {EntireTasks.map((task, index) =>
-          SubTaskBox(task, () => {
-            setEntireTasks((prevTasks) => {
-              const nextTasks = [...prevTasks];
-              nextTasks[index] = { ...task, isDone: !task.isDone };
-              return nextTasks;
-            });
-          })
-        )}
+        {EntireTasks.map((task, index) => (
+          <SubTaskBox task={task} onClick={() => toggleTask(task, index)}></SubTaskBox>
+        ))}
       </Styled.EntireTasks>
     </Styled.Content>
   );

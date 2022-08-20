@@ -33,9 +33,10 @@ const PersonaList = (people) => {
   );
 };
 
-const SubTaskBox = (task, setTasks) => {
+const SubTaskBox = (props) => {
+  const { task, onClick } = props;
   return (
-    <div onClick={() => setTasks()} key={task.id}>
+    <div onClick={onClick} key={task.id}>
       <Styled.SubTask>
         <Styled.TaskContainer>
           <Styled.TaskInfoBox>

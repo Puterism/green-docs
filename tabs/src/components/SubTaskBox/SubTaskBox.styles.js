@@ -78,7 +78,7 @@ const Score = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  color: #0078d4;
+  color: #019e79;
   ${CenterLine};
 `;
 

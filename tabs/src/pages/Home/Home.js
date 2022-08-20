@@ -124,6 +124,7 @@ const Home = () => {
             <Link to="/detail/1">Detail</Link>
           </Styled.PivotWrapper>
         </Styled.Home>
+      )}
     </Layout>
   );
 };

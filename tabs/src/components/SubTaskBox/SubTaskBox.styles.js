@@ -70,6 +70,7 @@ const ExtraNumber = styled.div`
 
 const SubTask = styled.div`
   width: 320px;
+  cursor: pointer;
 `;
 const Score = styled.p`
   margin: 0;

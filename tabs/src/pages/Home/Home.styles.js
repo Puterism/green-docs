@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
-const Home = styled.div``;
+const Home = styled.div`
+  flex: 1;
+`;
 
 const Title = styled.h1``;
 

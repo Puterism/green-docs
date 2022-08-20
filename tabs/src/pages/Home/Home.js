@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { DatePicker, Text, TextField, PrimaryButton, NormalPeoplePicker } from '@fluentui/react';
 import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -11,17 +10,6 @@ import usePeoplePicker from '../../hooks/usePeoplePicker';
 import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
 import { getTextFromItem, validateInput, onInputChange } from '../../utils/peoplePicker';
-
-const suggestionProps = {
-  suggestionsHeaderText: 'Suggested People',
-  mostRecentlyUsedHeaderText: 'Suggested Contacts',
-  noResultsFoundText: 'No results found',
-  loadingText: 'Loading',
-  showRemoveButtons: true,
-  suggestionsAvailableAlertText: 'People Picker Suggestions available',
-  suggestionsContainerAriaLabel: 'Suggested contacts',
-};
-
 
 const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
@@ -122,7 +110,6 @@ const Home = () => {
           </Pivot>
         </Styled.PivotWrapper>
       </div>
-
     </Layout>
   );
 };

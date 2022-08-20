@@ -1,15 +1,8 @@
 import styled from '@emotion/styled';
 
-
 const PivotWrapper = styled.div`
   padding: 0px 20px;
 `;
-
-const Home = styled.div`
-  flex: 1;
-`;
-
-const Title = styled.h1``;
 
 const SidebarContent = styled.div`
   padding: 20px;

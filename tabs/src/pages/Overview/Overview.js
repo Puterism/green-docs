@@ -32,7 +32,7 @@ const PersonaDetails = (item, index) => {
 
 const Overview = () => {
   const [EntireTasks, setEntireTasks] = useState(TestTaskData);
-  const [peopleList, setPeopleList] = useState(people);
+  const [peopleList] = useState(people);
 
   useEffect(() => {
     console.log(people);

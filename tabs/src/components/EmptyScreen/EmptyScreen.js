@@ -1,12 +1,18 @@
 import { Text } from '@fluentui/react';
-import CheckmarkWaiter from '../../assets/CheckmarkWaiter';
+import HumanSvg from '../../assets/HumanSvg';
 import Styled from './EmptyScreen.styles';
 
-const EmptyScreen = ({ type }) => {
+const EmptyScreen = ({ title, image }) => {
   return (
     <Styled.Container>
-      <Text variant="xLarge">Objectives created in this workspace will appear here</Text>
-      <CheckmarkWaiter />
+      <Text variant="xLarge">{title}</Text>
+      {image === 'CheckmarkWaiter' ? (
+        <HumanSvg.CheckmarkWaiter />
+      ) : image === 'ChartWomen' ? (
+        <HumanSvg.ChartWomen />
+      ) : (
+        <HumanSvg.CheckmarkWaiter />
+      )}
     </Styled.Container>
   );
 };

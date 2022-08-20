@@ -18,7 +18,7 @@ const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
     usePeoplePicker();
 
-  const [loading, setIsLoading] = useState(true);
+  const [loading, setIsLoading] = useState(false);
   const [objectiveName, onChangeObjectiveName] = useInput('');
   const [dueDate, onSelectDueDate] = useDatePicker('');
   const [description, onChangeDescription] = useInput('');
@@ -92,7 +92,10 @@ const Home = () => {
         </Styled.SidebarContent>
       </Sidebar>
       {loading ? (
-        <EmptyScreen></EmptyScreen>
+        <EmptyScreen
+          title={'Objectives created in this workspace will appear here'}
+          image={'CheckmarkWaiter'}
+        ></EmptyScreen>
       ) : (
         <Styled.Home>
           <HeadTitle name={'sonminji'} />

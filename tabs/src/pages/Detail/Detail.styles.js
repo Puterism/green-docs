@@ -50,6 +50,7 @@ const TaskCardListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 32px;
+  padding: 0 8px;
 
   & span {
     font-weight: 600;
@@ -61,6 +62,7 @@ const TaskCardList = styled.div`
   display: flex;
   max-width: 100vw;
   flex-wrap: wrap;
+  gap: 22px;
 `;
 
 export default {

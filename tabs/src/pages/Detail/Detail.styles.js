@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 const Detail = styled.div`
   padding: 8px 24px;
   flex: 1;
+  overflow-x: scroll;
 `;
 
 const SidebarContent = styled.div`

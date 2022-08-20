@@ -45,10 +45,15 @@ const usePeoplePicker = () => {
 
       filteredPersonas = removeDuplicates(filteredPersonas, currentPersonas);
       filteredPersonas = limitResults ? filteredPersonas.slice(0, limitResults) : filteredPersonas;
+
       return filterPromise(filteredPersonas);
     } else {
       return [];
     }
+  };
+
+  const onItemChange = (changedItem) => {
+    console.log(changedItem);
   };
 
   return {
@@ -56,6 +61,7 @@ const usePeoplePicker = () => {
     onFilterChanged,
     returnMostRecentlyUsed,
     onRemoveSuggestion,
+    onItemChange,
   };
 };
 

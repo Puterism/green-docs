@@ -65,17 +65,21 @@ const Overview = () => {
 
   return (
     <Styled.Content>
-      <Styled.Title>Team</Styled.Title>
-      <Styled.PersonasContainer>
-        {Object.values(peopleList).map((item, index) => index < 5 && PersonaDetails(item, index))}
-      </Styled.PersonasContainer>
+      <div>
+        <Styled.Title>Team</Styled.Title>
+        <Styled.PersonasContainer>
+          {Object.values(peopleList).map((item, index) => index < 5 && PersonaDetails(item, index))}
+        </Styled.PersonasContainer>
+      </div>
 
-      <Styled.Title>Sub Task this week</Styled.Title>
-      <Styled.EntireTasks>
-        {EntireTasks.map((task, index) => (
-          <SubTaskBox task={task} onClick={() => toggleTask(task, index)}></SubTaskBox>
-        ))}
-      </Styled.EntireTasks>
+      <div>
+        <Styled.Title>SubTask this week</Styled.Title>
+        <Styled.EntireTasks>
+          {EntireTasks.map((task, index) => (
+            <SubTaskBox task={task} onClick={() => toggleTask(task, index)}></SubTaskBox>
+          ))}
+        </Styled.EntireTasks>
+      </div>
     </Styled.Content>
   );
 };

@@ -1,12 +1,16 @@
 import {
+  Breadcrumb,
   ChoiceGroup,
   DatePicker,
+  Facepile,
   NormalPeoplePicker,
+  PersonaSize,
   PrimaryButton,
+  ProgressIndicator,
   Text,
   TextField,
 } from '@fluentui/react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -15,6 +19,16 @@ import useInput from '../../hooks/useInput';
 import usePeoplePicker from '../../hooks/usePeoplePicker';
 import { getTextFromItem, onInputChange, validateInput } from '../../utils/peoplePicker';
 import Styled from './Detail.styles';
+import { facepilePersonas } from '@fluentui/example-data';
+
+const breadcrumbItems = [
+  { text: 'Objectives', key: 'objectives-title' },
+  { text: 'Increase organic user', key: 'Increase organic user' },
+  { text: 'blabla task name', key: 'blabla task name' },
+  { text: 'blabla task name 1', key: 'blabla task name 1' },
+];
+
+const numberOfFaces = 5;
 
 const Detail = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
@@ -37,6 +51,7 @@ const Detail = () => {
   };
 
   const isValidForm = name.trim() !== '';
+  const personas = useMemo(() => facepilePersonas.slice(0, numberOfFaces), []);
 
   return (
     <Layout>
@@ -116,6 +131,23 @@ const Detail = () => {
         </Styled.SidebarContent>
       </Sidebar>
       <Styled.Detail>
+        <Breadcrumb items={breadcrumbItems} maxDisplayedItems={3} overflowIndex={1} />
+        <Styled.DescriptionWrapper>
+          <Text variant="medium">
+            When you think of SEO and ways to increase organic traffic, your mind likely jumps
+            straight to keyword research and tools like SEMrush. But there’s an easier, more
+            effective method. We’re going to teach you why user-generated content (UGC), like
+            customer ratings and reviews, images, and videos, is all you need to boost your SEO
+            strategy.
+          </Text>
+        </Styled.DescriptionWrapper>
+        <Styled.FacepileWrapper>
+          <Facepile personaSize={PersonaSize.size32} personas={personas} />
+        </Styled.FacepileWrapper>
+        <Styled.ProgressIndicator>
+          <ProgressIndicator percentComplete={0.5} />
+        </Styled.ProgressIndicator>
+
         <h2>ID: {id}</h2>
         <ul>
           <li>

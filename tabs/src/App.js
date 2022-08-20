@@ -1,5 +1,5 @@
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Goals from './pages/Goals/Goals';
+import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
         </Route>
         <>
           <Route exact path="/tab" component={Home} />
-          <Route exact path="/goals" component={Goals} />
+          <Route exact path="/detail/:id" component={Detail} />
         </>
       </Switch>
     </HashRouter>

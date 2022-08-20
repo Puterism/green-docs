@@ -11,6 +11,8 @@ import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
 import { getTextFromItem, validateInput, onInputChange } from '../../utils/peoplePicker';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import EmptyScreen from '../../components/EmptyScreen/EmptyScreen';
 import Overview from '../Overview/Overview';
 import Objectives from '../Objectives/Objectives';
 import Tasks from '../Tasks/Tasks';
@@ -20,6 +22,7 @@ const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
     usePeoplePicker();
 
+  const [loading, setIsLoading] = useState(false);
   const [objectiveName, onChangeObjectiveName] = useInput('');
   const [dueDate, onSelectDueDate] = useDatePicker('');
   const [description, onChangeDescription] = useInput('');
@@ -92,30 +95,35 @@ const Home = () => {
           </Styled.Form>
         </Styled.SidebarContent>
       </Sidebar>
+      {loading ? (
+        <EmptyScreen
+          title={'Objectives created in this workspace will appear here'}
+          image={'CheckmarkWaiter'}
+        ></EmptyScreen>
+      ) : (
+        <Styled.Home>
+          <HeadTitle name={'sonminji'} />
+          <Styled.PivotWrapper>
+            <Pivot aria-label="Basic Pivot Example">
+              <PivotItem headerText="Overview">
+                <Overview />
+              </PivotItem>
 
-      <Styled.Home>
-        <HeadTitle name={'sonminji'} />
-        <Styled.PivotWrapper>
-          <Pivot aria-label="Basic Pivot Example">
-            <PivotItem headerText="Overview">
-              <Overview />
-            </PivotItem>
+              <PivotItem headerText="Objectives">
+                <Overview />
+              </PivotItem>
 
-            <PivotItem headerText="Objectives">
-              <Objectives />
-            </PivotItem>
+              <PivotItem headerText="Tasks">
+                <Overview />
+              </PivotItem>
 
-            <PivotItem headerText="Tasks">
-              <Tasks />
-            </PivotItem>
-
-            <PivotItem headerText="Sub Tasks">
-              <SubTasks />
-            </PivotItem>
-          </Pivot>
-          <Link to="/detail/1">Detail</Link>
-        </Styled.PivotWrapper>
-      </Styled.Home>
+              <PivotItem headerText="Sub Tasks">
+                <Overview />
+              </PivotItem>
+            </Pivot>
+            <Link to="/detail/1">Detail</Link>
+          </Styled.PivotWrapper>
+        </Styled.Home>
     </Layout>
   );
 };

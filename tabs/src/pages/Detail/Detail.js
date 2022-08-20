@@ -22,6 +22,7 @@ import Styled from './Detail.styles';
 import { facepilePersonas } from '@fluentui/example-data';
 import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
 import { people } from '@fluentui/example-data';
+import EmptyScreen from '../../components/EmptyScreen/EmptyScreen';
 
 const TestTaskData = [
   {
@@ -62,6 +63,8 @@ const numberOfFaces = 5;
 const Detail = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
     usePeoplePicker();
+
+  const [loading, setIsLoading] = useState(false);
 
   const { id } = useParams();
 
@@ -174,42 +177,49 @@ const Detail = () => {
           </Styled.Form>
         </Styled.SidebarContent>
       </Sidebar>
-      <Styled.Detail>
-        <Breadcrumb items={breadcrumbItems} maxDisplayedItems={3} overflowIndex={1} />
-        <Styled.DescriptionWrapper>
-          <Text variant="medium">
-            When you think of SEO and ways to increase organic traffic, your mind likely jumps
-            straight to keyword research and tools like SEMrush. But there’s an easier, more
-            effective method. We’re going to teach you why user-generated content (UGC), like
-            customer ratings and reviews, images, and videos, is all you need to boost your SEO
-            strategy.
-          </Text>
-        </Styled.DescriptionWrapper>
-        <Styled.DueDateWrapper>
-          <Text variant={'large'}>Until 2022/09/01</Text>
-        </Styled.DueDateWrapper>
-        <Styled.FacepileWrapper>
-          <Facepile personaSize={PersonaSize.size32} personas={personas} />
-        </Styled.FacepileWrapper>
-        <Styled.ProgressIndicator>
-          <ProgressIndicator percentComplete={0.5} />
-        </Styled.ProgressIndicator>
+      {loading ? (
+        <EmptyScreen
+          title={'Task or Sub Task created in this workspace will appear here'}
+          image={'ChartWomen'}
+        ></EmptyScreen>
+      ) : (
+        <Styled.Detail>
+          <Breadcrumb items={breadcrumbItems} maxDisplayedItems={3} overflowIndex={1} />
+          <Styled.DescriptionWrapper>
+            <Text variant="medium">
+              When you think of SEO and ways to increase organic traffic, your mind likely jumps
+              straight to keyword research and tools like SEMrush. But there’s an easier, more
+              effective method. We’re going to teach you why user-generated content (UGC), like
+              customer ratings and reviews, images, and videos, is all you need to boost your SEO
+              strategy.
+            </Text>
+          </Styled.DescriptionWrapper>
+          <Styled.DueDateWrapper>
+            <Text variant={'large'}>Until 2022/09/01</Text>
+          </Styled.DueDateWrapper>
+          <Styled.FacepileWrapper>
+            <Facepile personaSize={PersonaSize.size32} personas={personas} />
+          </Styled.FacepileWrapper>
+          <Styled.ProgressIndicator>
+            <ProgressIndicator percentComplete={0.5} />
+          </Styled.ProgressIndicator>
 
-        <Styled.TaskCardListWrapper>
-          <Text variant="large">Tasks</Text>
-          <Styled.TaskCardList>
-            {TestTaskData.map((task, index) => (
-              <SubTaskBox key={task.id} task={task} onClick={() => toggleTask(task, index)} />
-            ))}
-          </Styled.TaskCardList>
-        </Styled.TaskCardListWrapper>
-        <h2>ID: {id}</h2>
-        <ul>
-          <li>
-            <Link to="/">홈</Link>
-          </li>
-        </ul>
-      </Styled.Detail>
+          <Styled.TaskCardListWrapper>
+            <Text variant="large">Tasks</Text>
+            <Styled.TaskCardList>
+              {TestTaskData.map((task, index) => (
+                <SubTaskBox key={task.id} task={task} onClick={() => toggleTask(task, index)} />
+              ))}
+            </Styled.TaskCardList>
+          </Styled.TaskCardListWrapper>
+          <h2>ID: {id}</h2>
+          <ul>
+            <li>
+              <Link to="/">홈</Link>
+            </li>
+          </ul>
+        </Styled.Detail>
+      )}
     </Layout>
   );
 };

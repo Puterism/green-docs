@@ -5,12 +5,16 @@ import Styled from './Home.styles';
 
 import HeadTitle from '../../components/HeadTitle/HeadTitle';
 import { Pivot, PivotItem } from '@fluentui/react';
-import Overview from '../Overview/Overview';
+
 import usePeoplePicker from '../../hooks/usePeoplePicker';
 import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
 import { getTextFromItem, validateInput, onInputChange } from '../../utils/peoplePicker';
 import { Link } from 'react-router-dom';
+import Overview from '../Overview/Overview';
+import Objectives from '../Objectives/Objectives';
+import Tasks from '../Tasks/Tasks';
+import SubTasks from '../SubTasks/SubTasks';
 
 const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
@@ -94,21 +98,19 @@ const Home = () => {
         <Styled.PivotWrapper>
           <Pivot aria-label="Basic Pivot Example">
             <PivotItem headerText="Overview">
-              <Link to="/detail/1">
-                <Overview />
-              </Link>
+              <Overview />
             </PivotItem>
 
             <PivotItem headerText="Objectives">
-              <Overview />
+              <Objectives />
             </PivotItem>
 
             <PivotItem headerText="Tasks">
-              <Overview />
+              <Tasks />
             </PivotItem>
 
             <PivotItem headerText="Sub Tasks">
-              <Overview />
+              <SubTasks />
             </PivotItem>
           </Pivot>
         </Styled.PivotWrapper>

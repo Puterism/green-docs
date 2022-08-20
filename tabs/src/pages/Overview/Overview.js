@@ -5,7 +5,7 @@ import { Persona, PersonaSize, PersonaPresence } from '@fluentui/react/lib/Perso
 import { people } from '@fluentui/example-data';
 import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
 
-const TestTaskData = [
+export const TestTaskData = [
   { id: 1, duedate: '10/7', title: 'Front Developer', Assignee: people, Score: 5, isDone: false },
   { id: 2, duedate: '10/2', title: 'Front Developer', Assignee: people, Score: 6, isDone: false },
   { id: 3, duedate: '10/3', title: 'Front Developer', Assignee: people, Score: 8, isDone: false },

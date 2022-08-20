@@ -5,7 +5,7 @@ import { people } from '@fluentui/example-data';
 import { Persona, PersonaPresence } from '@fluentui/react/lib/Persona';
 import { TestImages } from '@fluentui/example-data';
 
-const PersonaList = (people) => {
+export const PersonaList = (people) => {
   const peopleLen = Object.values(people).length;
   let extraNum = peopleLen > 5 ? peopleLen - 5 : 0;
   return (
@@ -42,7 +42,7 @@ const SubTaskBox = (props) => {
           <Styled.TaskInfoBox>
             <Styled.Duedate isDone={task.isDone}>Until {task.duedate}</Styled.Duedate>
             <Styled.Tasktitle isDone={task.isDone}>{task.title}</Styled.Tasktitle>
-            {PersonaList(people)}
+            <Styled.Assignee>{PersonaList(people)}</Styled.Assignee>
             <Styled.Score isDone={task.isDone}>Score : {task.Score}</Styled.Score>
           </Styled.TaskInfoBox>
           <Checkbox checked={task.isDone} />

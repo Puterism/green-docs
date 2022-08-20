@@ -3,10 +3,15 @@ import styled from '@emotion/styled';
 const Detail = styled.div`
   padding: 8px 24px;
   flex: 1;
+  overflow-x: scroll;
 `;
 
 const SidebarContent = styled.div`
   padding: 20px;
+
+  & span {
+    font-weight: 600;
+  }
 `;
 
 const Form = styled.form`
@@ -59,8 +64,8 @@ const TaskCardListWrapper = styled.div`
 
 const TaskCardList = styled.div`
   display: flex;
-  max-width: 100vw;
   flex-wrap: wrap;
+  gap: 22px;
 `;
 
 export default {

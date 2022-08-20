@@ -6,11 +6,11 @@ const Home = styled.div`
 `;
 
 const PivotWrapper = styled.div`
-  padding: 20px;
+  padding: 0 20px;
 `;
 
 const SidebarContent = styled.div`
-  padding: 32px 20px;
+  padding: 20px;
 
   & span:first-of-type {
     font-weight: 600;

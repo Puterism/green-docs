@@ -10,6 +10,7 @@ import usePeoplePicker from '../../hooks/usePeoplePicker';
 import useInput from '../../hooks/useInput';
 import useDatePicker from '../../hooks/useDatePicker';
 import { getTextFromItem, validateInput, onInputChange } from '../../utils/peoplePicker';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
@@ -108,6 +109,7 @@ const Home = () => {
               <Overview />
             </PivotItem>
           </Pivot>
+          <Link to="/detail/1">Detail</Link>
         </Styled.PivotWrapper>
       </Styled.Home>
     </Layout>

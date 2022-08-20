@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+const Container = styled.div`
+  & a {
+    text-decoration: none;
+  }
+`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,10 +24,10 @@ const Content = styled.div`
 
 const Title = styled.h1`
   margin: 0;
-  font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
+  color: #323130;
 `;
 
 const Date = styled.h1`
@@ -73,6 +79,7 @@ const PersonaList = styled.div`
 `;
 
 export default {
+  Container,
   Content,
   Title,
   Date,

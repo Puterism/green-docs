@@ -64,7 +64,7 @@ const Detail = () => {
   const { picker, onFilterChanged, returnMostRecentlyUsed, onRemoveSuggestion, onItemChange } =
     usePeoplePicker();
 
-  const [loading, setIsLoading] = useState(false);
+  const [loading] = useState(false);
 
   const { id } = useParams();
 

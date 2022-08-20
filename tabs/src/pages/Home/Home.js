@@ -113,6 +113,7 @@ const Home = () => {
               <SubTasks />
             </PivotItem>
           </Pivot>
+          <Link to="/detail/1">Detail</Link>
         </Styled.PivotWrapper>
       </Styled.Home>
     </Layout>

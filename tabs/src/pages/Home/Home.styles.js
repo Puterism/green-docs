@@ -2,23 +2,31 @@ import styled from '@emotion/styled';
 
 const Home = styled.div`
   flex: 1;
+  overflow: scroll;
 `;
 
 const PivotWrapper = styled.div`
-  padding: 0px 20px;
+  padding: 0 20px;
 `;
 
 const SidebarContent = styled.div`
   padding: 20px;
+
+  & span:first-of-type {
+    font-weight: 600;
+  }
 `;
 
 const Form = styled.form`
-  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+  width: 100%;
 `;
 
 const FormField = styled.div`
   & + & {
-    margin-top: 26px;
+    padding-top: 26px;
   }
 `;
 

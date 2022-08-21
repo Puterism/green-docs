@@ -75,7 +75,6 @@ const Detail = () => {
   const [score, onChangeScore] = useInput('');
 
   const [EntireTasks, setEntireTasks] = useState(TestTaskData);
-  const [peopleList] = useState(people);
 
   useEffect(() => {
     console.log(people);
@@ -207,7 +206,7 @@ const Detail = () => {
           <Styled.TaskCardListWrapper>
             <Text variant="large">Tasks</Text>
             <Styled.TaskCardList>
-              {TestTaskData.map((task, index) => (
+              {EntireTasks.map((task, index) => (
                 <SubTaskBox key={task.id} task={task} onClick={() => toggleTask(task, index)} />
               ))}
             </Styled.TaskCardList>

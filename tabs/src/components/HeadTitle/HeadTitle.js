@@ -4,7 +4,8 @@ import { CSVLink } from 'react-csv';
 import { PrimaryButton } from '@fluentui/react';
 import axios from 'axios';
 
-const csvData = [
+const csvData = [];
+const okrData = [
   ['OKR', 'title', 'score', 'Progress'],
   ['Objective 1', 'junction asia', '1', '100'],
 
@@ -67,7 +68,7 @@ const HeadTitle = ({ name }) => {
           Welcome to Junction Asia workspace. Find your goals and tasks!
         </Styled.Subtitle>
       </div>
-      <CSVLink data={csvData} filename={'download OKR'}>
+      <CSVLink data={okrData} filename={'download OKR'}>
         <PrimaryButton variant="success">Download CSV</PrimaryButton>
       </CSVLink>
     </Styled.Content>

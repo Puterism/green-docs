@@ -15,11 +15,19 @@
 ## Install
 
 1. Clone the repository
-   `git clone git@github.com:Puterism/green-docs.git`
+   ```
+   git clone git@github.com:Puterism/green-docs.git
+   ```
 
-2. Install vscode extenstion **Teams Toolkit**
+2. Install vscode extenstion `Teams Toolkit`
 
 3. Install npm packages.
-   `npm install`
+   ```
+   npm install
+   ```
 
-4. All done! Build the App by **F5** button
+4. Build the App by `F5` button
+
+5. When the teams app opens, the page will ask you whether add the green-docs app. Just click the `add` button.
+
+6. All done! You can use green-docs

@@ -8,28 +8,15 @@ import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
 export const TestTaskData = [
   {
     id: 1,
-    duedate: '10/7',
-    title: 'Front Developer',
-    description: '설명입니다',
+    duedate: '08/20',
+    title: 'Implement Login',
+    description: 'Implement Login',
     Assignee: people,
     Score: 5,
     isDone: false,
   },
-  { id: 2, duedate: '10/2', title: 'Front Developer', Assignee: people, Score: 6, isDone: false },
-  { id: 3, duedate: '10/3', title: 'Front Developer', Assignee: people, Score: 8, isDone: false },
-  { id: 4, duedate: '10/4', title: 'Front Developer', Assignee: people, Score: 2, isDone: false },
-  {
-    id: 5,
-    duedate: '10/5',
-    title: 'Front Developer',
-    description:
-      'I did some research and found that the proper way of implementing a user login system is to store the user name/id and the encrypted/hashed',
-    Assignee: people,
-    Score: 1,
-    isDone: false,
-  },
-  { id: 6, duedate: '10/6', title: 'Front Developer', Assignee: people, Score: 3, isDone: false },
-  { id: 7, duedate: '10/7', title: 'Front Developer', Assignee: people, Score: 4, isDone: false },
+  { id: 2, duedate: '08/21', title: 'User Interview', Assignee: people, Score: 8, isDone: false },
+  { id: 3, duedate: '08/22', title: 'Check Final Demo', Assignee: people, Score: 7, isDone: true },
 ];
 
 const PersonaDetails = (item, index) => {
@@ -38,7 +25,7 @@ const PersonaDetails = (item, index) => {
       <Persona
         imageUrl={item.imageUrl}
         showSecondaryText={true}
-        text={item.imageInitials}
+        text={item.text}
         secondaryText={item.secondaryText}
         size={PersonaSize.size48}
         presence={item.presence}
@@ -49,7 +36,43 @@ const PersonaDetails = (item, index) => {
 
 const Overview = () => {
   const [EntireTasks, setEntireTasks] = useState(TestTaskData);
-  const [peopleList] = useState(people);
+  const [peopleList] = useState([
+    {
+      secondaryText: 'Frontend Developer',
+      text: 'MunSeong Shim',
+      isValid: true,
+      key: 1,
+      presence: 2,
+    },
+    {
+      text: 'Beomsoo Son',
+      secondaryText: 'Product Designer',
+      isValid: true,
+      key: 2,
+      presence: 2,
+    },
+    {
+      text: 'Sion Kang',
+      secondaryText: 'Backend Developer',
+      isValid: true,
+      key: 3,
+      presence: 2,
+    },
+    {
+      text: 'Min Ji Son',
+      secondaryText: 'Frontend Developer',
+      isValid: true,
+      key: 4,
+      presence: 2,
+    },
+    {
+      text: 'Gabin Kim',
+      secondaryText: 'Product Manager',
+      isValid: true,
+      key: 5,
+      presence: 2,
+    },
+  ]);
 
   useEffect(() => {}, []);
 

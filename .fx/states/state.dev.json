@@ -1,0 +1,42 @@
+{
+    "solution": {
+        "teamsAppTenantId": "4e745f03-5a68-4c25-8fc4-41da20a76a76",
+        "subscriptionId": "ac94b6cb-1393-4ce3-a208-b868a6f32d22",
+        "subscriptionName": "Azure subscription 1",
+        "tenantId": "4e745f03-5a68-4c25-8fc4-41da20a76a76",
+        "needCreateResourceGroup": true,
+        "resourceGroupName": "greendocs-dev-rg",
+        "location": "Korea Central",
+        "resourceNameSuffix": "791757",
+        "provisionSucceeded": true
+    },
+    "fx-resource-appstudio": {
+        "tenantId": "4e745f03-5a68-4c25-8fc4-41da20a76a76",
+        "teamsAppId": "20c180f8-021a-471d-b122-753bf7e443c8",
+        "teamsAppUpdatedAt": 1661032437674
+    },
+    "fx-resource-identity": {
+        "identityName": "contactexp791757",
+        "identityResourceId": "/subscriptions/ac94b6cb-1393-4ce3-a208-b868a6f32d22/resourceGroups/greendocs-dev-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/contactexp791757",
+        "identityClientId": "d34b30d0-5024-44e9-afb8-a5b710fc17bf"
+    },
+    "fx-resource-aad-app-for-teams": {
+        "clientId": "dc97bc12-0729-47f2-aab5-dfa023df09ae",
+        "clientSecret": "{{fx-resource-aad-app-for-teams.clientSecret}}",
+        "objectId": "a78288f5-f48d-4064-9a7b-a18499833bd9",
+        "oauth2PermissionScopeId": "e8ddb643-a09f-4845-852c-62f065902bb1",
+        "tenantId": "4e745f03-5a68-4c25-8fc4-41da20a76a76",
+        "oauthHost": "https://login.microsoftonline.com",
+        "oauthAuthority": "https://login.microsoftonline.com/4e745f03-5a68-4c25-8fc4-41da20a76a76",
+        "applicationIdUris": "api://contactexp791757tab.z12.web.core.windows.net/dc97bc12-0729-47f2-aab5-dfa023df09ae",
+        "frontendEndpoint": "https://contactexp791757tab.z12.web.core.windows.net"
+    },
+    "fx-resource-frontend-hosting": {
+        "domain": "contactexp791757tab.z12.web.core.windows.net",
+        "endpoint": "https://contactexp791757tab.z12.web.core.windows.net",
+        "indexPath": "/index.html#",
+        "storageResourceId": "/subscriptions/ac94b6cb-1393-4ce3-a208-b868a6f32d22/resourceGroups/greendocs-dev-rg/providers/Microsoft.Storage/storageAccounts/contactexp791757tab"
+    },
+    "fx-resource-cicd": {},
+    "fx-resource-api-connector": {}
+}

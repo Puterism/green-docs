@@ -21,23 +21,89 @@ import { useCallback } from 'react';
 import { TeamsFx } from '@microsoft/teamsfx';
 import EmptyScreen from '../../components/EmptyScreen/EmptyScreen';
 import { Link } from 'react-router-dom';
+import { people } from '@fluentui/example-data';
+import { nanoid } from 'nanoid';
+
+const testData = [
+  {
+    id: 1,
+    dueDate: '2022/11/08',
+    title: 'Reach a new annual revenue record.',
+    Assignee: people,
+    progress: 0.5,
+  },
+  {
+    id: 2,
+    dueDate: '2022/12/20',
+    title: 'Successfully launch our new product',
+    Assignee: people,
+    progress: 0.5,
+  },
+  {
+    id: 3,
+    dueDate: '2022/10/12',
+    title: 'Successfully position ourselves in the European market.',
+    Assignee: people,
+    progress: 0.5,
+  },
+];
 
 const Home = () => {
   const [username, setUsername] = useState('');
 
   const [loading] = useState(false);
-  const [objectiveName, onChangeObjectiveName] = useInput('');
-  const [dueDate, onSelectDueDate] = useDatePicker('');
-  const [description, onChangeDescription] = useInput('');
+  const [objectiveName, onChangeObjectiveName, setObjectiveName] = useInput('');
+  const [dueDate, onSelectDueDate, setDueDate] = useDatePicker('');
+  const [description, onChangeDescription, setDescription] = useInput('');
+  const [selectedPeople, setSelectedPeople] = useState([]);
 
-  const handleSubmit = (event) => {
+  const [objectiveList, setObjectiveList] = useState(testData);
+
+  const handleSubmitObjective = async (event) => {
     event.preventDefault();
+
+    console.log(selectedPeople, objectiveName, dueDate, description);
+
+    setObjectiveList((prevList) => {
+      return [
+        ...prevList,
+        {
+          id: nanoid(),
+          title: objectiveName,
+          description,
+          dueDate: dueDate.toDateString(),
+          selectedPeople: selectedPeople.map((person) => person.id),
+          childTasks: [],
+        },
+      ];
+    });
+
+    setObjectiveName('');
+    setDueDate('');
+    setDescription('');
+
+    // const objectiveList = JSON.parse(localStorage.getItem('objectiveList')) ?? [];
+
+    // localStorage.setItem(
+    //   'objectiveList',
+    //   JSON.stringify([
+    //     ...objectiveList,
+    //     {
+    //       id: nanoid(),
+    //       objectiveName,
+    //       description,
+    //       dueDate,
+    //       selectedPeople: selectedPeople.map((person) => person.id),
+    //       childTasks: [],
+    //     },
+    //   ])
+    // );
   };
 
   const isValidForm = objectiveName.trim() !== '';
 
   const handleInputChange = (event) => {
-    console.log(event.target.selectedPeople);
+    setSelectedPeople(event.target.selectedPeople);
   };
 
   const [showLoginPage, setShowLoginPage] = useState(false);
@@ -119,7 +185,7 @@ const Home = () => {
           <Sidebar>
             <Styled.SidebarContent>
               <Text variant="large">New Objective</Text>
-              <Styled.Form onSubmit={handleSubmit}>
+              <Styled.Form onSubmit={handleSubmitObjective}>
                 <Styled.FormField>
                   <TextField
                     label="Objective name"
@@ -154,7 +220,7 @@ const Home = () => {
                   <PeoplePicker userType="user" selectionChanged={handleInputChange} />
                 </Styled.FormField>
                 <Styled.SubmitField>
-                  <PrimaryButton text="Create" disabled={!isValidForm} />
+                  <PrimaryButton type="submit" text="Create" disabled={!isValidForm} />
                 </Styled.SubmitField>
               </Styled.Form>
             </Styled.SidebarContent>
@@ -174,7 +240,7 @@ const Home = () => {
                   </PivotItem>
 
                   <PivotItem headerText="Objectives">
-                    <Objectives />
+                    <Objectives objectiveList={objectiveList} />
                   </PivotItem>
 
                   <PivotItem headerText="Tasks">

@@ -1,6 +1,7 @@
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Detail from './pages/Detail/Detail';
 import Home from './pages/Home/Home';
+import Sample from './pages/Sample/Sample';
 
 import { initializeIcons, ThemeProvider } from '@fluentui/react';
 
@@ -24,6 +25,7 @@ const App = () => {
           <>
             <Route exact path="/tab" component={Home} />
             <Route exact path="/detail/:id" component={Detail} />
+            <Route exact path="/sample" component={Sample} />
           </>
         </Switch>
       </HashRouter>

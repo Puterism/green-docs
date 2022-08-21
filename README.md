@@ -20,17 +20,13 @@
    ```
 
 2. Install vscode extenstion `Teams Toolkit`
+
 3. Go to the side-bar on vscode, and click the Teams Toolkit icon. Then **login** into Microsoft365 with domain @*.onmicrosoft.com
 
-4. Install npm packages.
-   ```
-   npm install
-   ```
+4. Build the App by `F5` button
 
-5. Build the App by `F5` button
+5. When the teams app opens, the page will ask you whether add the green-docs app. Just click the `add` button.
 
-6. When the teams app opens, the page will ask you whether add the green-docs app. Just click the `add` button.
-
-7. All done! You can use green-docs
+6. All done! You can use green-docs
 
 

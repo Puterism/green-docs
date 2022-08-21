@@ -20,7 +20,7 @@
    ```
 
 2. Install vscode extenstion `Teams Toolkit`
-3. Go to the side-bar on vscode, and click the Teams Toolkit icon. Then **login** into Microsoft365 with **domain ***.onmicrosoft.com** 
+3. Go to the side-bar on vscode, and click the Teams Toolkit icon. Then **login** into Microsoft365 with domain @*.onmicrosoft.com** 
 
 4. Install npm packages.
    ```

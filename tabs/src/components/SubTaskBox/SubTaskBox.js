@@ -3,6 +3,7 @@ import Styled from './SubTaskBox.styles';
 import { Checkbox, TooltipHost } from '@fluentui/react';
 import { people } from '@fluentui/example-data';
 import { Persona, PersonaPresence } from '@fluentui/react/lib/Persona';
+import { TestImages } from '@fluentui/example-data';
 import { useId } from '@fluentui/react-hooks';
 
 export const PersonaList = (people) => {
@@ -15,12 +16,9 @@ export const PersonaList = (people) => {
           index < 5 && (
             <Styled.PersonaWrapper key={index}>
               <Persona
-                imageUrl={item.imageUrl}
-                showSecondaryText={true}
-                text={item.imageInitials}
-                secondaryText={item.secondaryText}
+                imageUrl={TestImages.personaFemale}
                 coinSize={16}
-                presence={item.presence}
+                presence={PersonaPresence.online}
                 hidePersonaDetails
               />
             </Styled.PersonaWrapper>
@@ -46,7 +44,9 @@ const SubTaskBox = (props) => {
         <Styled.SubTask>
           <Styled.TaskContainer>
             <Styled.TaskInfoBox>
-              <Styled.Duedate isDone={task.isDone}>Until {task.duedate}</Styled.Duedate>
+              {task.dueDate && (
+                <Styled.Duedate isDone={task.isDone}>Until {task.duedate}</Styled.Duedate>
+              )}
               <Styled.Tasktitle isDone={task.isDone}>{task.title}</Styled.Tasktitle>
               {PersonaList(people)}
               <Styled.Score isDone={task.isDone}>Score : {task.Score}</Styled.Score>

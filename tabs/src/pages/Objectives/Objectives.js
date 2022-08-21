@@ -1,23 +1,25 @@
-import { useEffect } from 'react';
-
 import Objectivebox from '../../components/Objectivebox/Objectivebox';
 import Styled from './Objectives.styles';
-import { people } from '@fluentui/example-data';
 
-const TestData = [
-  { id: 1, date: '2022/10/07', title: 'Front Developer', Assignee: people, progress: 0.5 },
-  { id: 2, date: '2022/10/02', title: 'Front Developer', Assignee: people, progress: 0.2 },
-  { id: 3, date: '2022/10/03', title: 'Front Developer', Assignee: people, progress: 0 },
-  { id: 4, date: '2022/10/04', title: 'Front Developer', Assignee: people, progress: 1 },
-];
+const Objectives = ({ objectiveList }) => {
+  // const fetchObjectives = useCallback(async () => {
+  //   const response = await axios.get(
+  //     'http://localhost:8888/tasks?parentTaskId=1&order=DESC&page=1&take=100'
+  //   );
 
-const Objectives = () => {
-  useEffect(() => {}, []);
+  //   const data = response.data.data;
+  //   setObjectiveList(data);
+  //   console.log(data);
+  // }, []);
+
+  // useEffect(() => {
+  //   fetchObjectives();
+  // }, [fetchObjectives]);
 
   return (
     <Styled.Content>
       <Styled.ObjectivesContainer>
-        {TestData.map((item) => (
+        {objectiveList.map((item) => (
           <Objectivebox task={item} />
         ))}
       </Styled.ObjectivesContainer>

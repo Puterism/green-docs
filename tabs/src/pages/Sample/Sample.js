@@ -14,25 +14,38 @@ import Layout from '../../components/Layout/Layout';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import useDatePicker from '../../hooks/useDatePicker';
 import useInput from '../../hooks/useInput';
-import Styled from './Detail.styles';
+import Styled from './Sample.styles';
 import { facepilePersonas } from '@fluentui/example-data';
 import SubTaskBox from '../../components/SubTaskBox/SubTaskBox';
 import { people } from '@fluentui/example-data';
 import EmptyScreen from '../../components/EmptyScreen/EmptyScreen';
 import { PeoplePicker } from '@microsoft/mgt-react';
-import { nanoid } from 'nanoid';
 
-const TestTaskData = [
+const TestSubTaskData = [
   {
     id: 1,
-    duedate: '2022/11/22',
-    title: 'Make viral growth',
+    duedate: '07/07',
+    title: 'Video marketing',
     Assignee: people,
-    Score: 7,
+    Score: 5,
     isDone: false,
   },
-  { id: 2, duedate: '08/07', title: 'Usability test', Assignee: people, Score: 7, isDone: false },
-  { id: 3, duedate: '08/12', title: 'User Interview', Assignee: people, Score: 5, isDone: false },
+  {
+    id: 2,
+    duedate: '11/14',
+    title: 'Social media giveaways',
+    Assignee: people,
+    Score: 5,
+    isDone: false,
+  },
+  {
+    id: 3,
+    duedate: '07/27',
+    title: 'Referral marketing campaigns',
+    Assignee: people,
+    Score: 5,
+    isDone: true,
+  },
 ];
 
 const breadcrumbItems = [
@@ -46,12 +59,12 @@ const Detail = () => {
   const [loading] = useState(false);
 
   const [type, setType] = useState({ key: 'task', text: 'Task' });
-  const [name, onChangeName, setName] = useInput('');
-  const [dueDate, onSelectDueDate, setDueDate] = useDatePicker('');
-  const [description, onChangeDescription, setDescription] = useInput('');
-  const [score, onChangeScore, setScore] = useInput('');
+  const [name, onChangeName] = useInput('');
+  const [dueDate, onSelectDueDate] = useDatePicker('');
+  const [description, onChangeDescription] = useInput('');
+  const [score, onChangeScore] = useInput('');
 
-  const [EntireTasks, setEntireTasks] = useState(TestTaskData);
+  const [EntireTasks, setEntireTasks] = useState(TestSubTaskData);
   const [peopleList] = useState(people);
 
   useEffect(() => {
@@ -68,29 +81,6 @@ const Detail = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    console.log(type, name, dueDate, description, score);
-
-    if (type.key === 'sub-task') {
-      setEntireTasks((prevTasks) => {
-        return [
-          ...prevTasks,
-          {
-            id: nanoid(),
-            dueDate,
-            title: name,
-            Assignee: people,
-            Score: score,
-            isDone: false,
-          },
-        ];
-      });
-    }
-
-    setName('');
-    setDescription('');
-    setDueDate('');
-    setScore('');
   };
 
   const handleChangeType = (event, option) => {
@@ -154,7 +144,7 @@ const Detail = () => {
               <PeoplePicker userType="user" selectionChanged={handleInputChange} />
             </Styled.FormField>
             <Styled.SubmitField>
-              <PrimaryButton type="submit" text="Create" disabled={!isValidForm} />
+              <PrimaryButton text="Create" disabled={!isValidForm} />
             </Styled.SubmitField>
           </Styled.Form>
         </Styled.SidebarContent>
@@ -187,7 +177,7 @@ const Detail = () => {
           <Styled.TaskCardListWrapper>
             <Text variant="large">Sub Tasks</Text>
             <Styled.TaskCardList>
-              {EntireTasks.map((task, index) => (
+              {TestSubTaskData.map((task, index) => (
                 <SubTaskBox key={task.id} task={task} onClick={() => toggleTask(task, index)} />
               ))}
             </Styled.TaskCardList>

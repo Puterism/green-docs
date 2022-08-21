@@ -6,7 +6,7 @@
 - Increase the conversion rate -> Intermediate Indicator / Key Result
 - Score (weighted) for each task
 
-## Verion
+## Version
 
 - react >= 16.14.0
 - node >= 16.13.0
@@ -31,3 +31,5 @@
 5. When the teams app opens, the page will ask you whether add the green-docs app. Just click the `add` button.
 
 6. All done! You can use green-docs
+
+
